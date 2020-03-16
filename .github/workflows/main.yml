@@ -31,7 +31,7 @@ jobs:
         uses: easingthemes/ssh-deploy@v2.0.7
         env:
           SSH_PRIVATE_KEY: ${{ secrets.redux_actions}}
-          ARGS: "-avz --delete"
+          ARGS: "-avz"
           SOURCE: "./build/"
           REMOTE_HOST: "47.95.206.137"
           REMOTE_USER: "root"
