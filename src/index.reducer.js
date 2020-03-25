@@ -1,17 +1,38 @@
+import moment from 'moment'
 
-const tiger = 10000;
+class Info {
+    message;
+    date;
+}
 
-const reducer = (state = tiger, action) => {
+class Recard {
+    tiger = 10000;
+    infos = [];
+}
+
+const recard = new Recard();
+
+const reducer = (state = recard, action) => {
+    let info = new Info();
     switch (action.type) {
         case "涨工资":
-            state += 100;
+            state.tiger += 100;
+            info.message = "涨100工资";
+            info.date = moment().format('YYYY-MM-DD HH:mm:ss');
+            state.infos.push(info);
             break;
         case "扣工资":
-            state -= 100;
+            state.tiger -= 100;
+            info.message = "扣100工资";
+            info.date = moment().format('YYYY-MM-DD HH:mm:ss');
+            state.infos.push(info);
             break;
         default:
             break;
     }
-    return state;
+    let newRecard = new Recard();
+    newRecard.tiger = state.tiger;
+    newRecard.infos = state.infos;
+    return newRecard;
 }
 export default reducer;
